@@ -82,8 +82,8 @@ This ERD provides a clear overview of the relationships between various entities
     HAVING COUNT(O.OrderID) > 1  
 
 <ul>
-  <li><b>Challenges</b><br>  Understanding nested subqueries and their purpose and Correlating the subquery with the main query</li>
-  <li><b>Solution</b><br>  In this case, the nested subquery is used to determine the maximum average rating among all products, which is then used to filter the main query results. The subquery's output is used as a filter for the main query. The HAVING clause in the main query compares the average rating of each product to the maximum average rating obtained from the subquery, ensuring that only products with the highest average rating are included in the final results. </li>
+  <li><b>Challenges</b><br> Combining data from multiple tables using JOIN</li>
+  <li><b>Solution</b><br>  Understanding how to join tables using a common field to combine data from multiple sources. In this query, the Customer and Orders tables are joined on the CustomerID and Customer_ID fields, respectively, to associate customer information with their orders. </li>
 </ul>
 
 
