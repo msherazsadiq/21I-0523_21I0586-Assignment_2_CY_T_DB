@@ -101,13 +101,12 @@ This ERD provides a clear overview of the relationships between various entities
 </ul>
 
 <h3>Q8. List customers who have not reviewed any products </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/81debd2b-55cd-468e-94ad-8106d886eab5">
 
-    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
-    FROM Product AS P
-    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
-    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
-    GROUP BY P.ProductCatagory;
+    SELECT C.CustomerID, C.CustomerName
+    FROM Customer AS C
+    LEFT JOIN Review AS R ON C.CustomerID = R.Customer_ID
+    WHERE R.ReviewID IS NULL;
 
 <ul>
   <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
@@ -115,28 +114,27 @@ This ERD provides a clear overview of the relationships between various entities
 </ul>
 
 <h3>Q9.  Find products with quantities below the average quantity in stock </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/c081ef9c-c0ba-49c7-a617-5c29811e371d">
 
-    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    SELECT P.ProductID, P.ProductName, I.QuantityInStock
     FROM Product AS P
-    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
-    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
-    GROUP BY P.ProductCatagory;
+    JOIN Inventory AS I ON P.ProductID = I.Product_ID
+    WHERE I.QuantityInStock < (SELECT AVG(QuantityInStock) FROM Inventory);
+
 
 <ul>
   <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
   <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
 </ul>
 
-<h3>Q10. Calculate the total number of orders for each customer and show only those with more than
-5 orders. </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+<h3>Q10. Calculate the total number of orders for each customer and show only those with more than 5 orders. </h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/2d293a23-696e-489d-b4b9-c9aefd053b49">
 
-    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
-    FROM Product AS P
-    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
-    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
-    GROUP BY P.ProductCatagory;
+    SELECT C.CustomerID, C.CustomerName, COUNT(O.OrderID) AS TotalOrders
+    FROM Customer AS C
+    JOIN Orders AS O ON c.CustomerID = O.Customer_ID
+    GROUP BY C.CustomerID, C.CustomerName
+    HAVING COUNT(O.OrderID) >= 5;
 
 <ul>
   <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
@@ -144,13 +142,13 @@ This ERD provides a clear overview of the relationships between various entities
 </ul>
 
 <h3>Q11. Retrieve the 3 most recent orders for a specific customer </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/9a2f305f-ccfb-4c7b-8b24-3256447909e8">
 
-    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
-    FROM Product AS P
-    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
-    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
-    GROUP BY P.ProductCatagory;
+    SELECT TOP 3 O.OrderID, O.OrderNumber, O.CreationTimeStamp, O.TotalAmount
+    FROM Orders AS O
+    INNER JOIN Customer AS C ON O.Customer_ID = C.CustomerID
+    WHERE C.CustomerID = 3  -- Replace ... with the specific customer's ID
+    ORDER BY O.CreationTimeStamp DESC;
 
 <ul>
   <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
@@ -159,13 +157,15 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q12. List customers who have purchased products from at least two different sellers. </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/10611f4b-4050-4f85-a539-8c3f39436eeb">
 
-    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
-    FROM Product AS P
-    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
-    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
-    GROUP BY P.ProductCatagory;
+    SELECT C.CustomerID, C.CustomerName
+    FROM Customer AS C
+    JOIN Orders AS O ON C.CustomerID = O.Customer_ID
+    JOIN OrderItem AS OI ON O.OrderID = OI.Order_ID
+    JOIN Product AS P ON OI.Product_ID = P.ProductID
+    GROUP BY C.CustomerID, C.CustomerName
+    HAVING COUNT(DISTINCT P.Seller_ID) >= 2;
 
 <ul>
   <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
@@ -174,13 +174,12 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q13. Find customers who have placed an order in the last 30 days.</h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/5341f334-cc66-4113-b0ed-c45feacf53ad">
 
-    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
-    FROM Product AS P
-    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
-    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
-    GROUP BY P.ProductCatagory;
+    SELECT DISTINCT C.CustomerID, C.CustomerName
+    FROM Customer AS C
+    INNER JOIN Orders AS O ON C.CustomerID = O.Customer_ID
+    WHERE O.CreationTimeStamp >= DATEADD(DAY, -30, GETDATE());
 
 <ul>
   <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
@@ -189,13 +188,21 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q14. List customers who have made a purchase in every product category </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/5744afb8-31af-4e57-adab-57ed052a977d">
 
-    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
-    FROM Product AS P
-    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
-    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
-    GROUP BY P.ProductCatagory;
+    SELECT C.CustomerID, C.CustomerName
+    FROM Customer AS C
+    WHERE (
+        SELECT COUNT(DISTINCT P.ProductCatagory)
+        FROM Orders AS O
+        JOIN OrderItem AS OI ON O.OrderID = OI.Order_ID
+        JOIN Product AS P ON OI.Product_ID = P.ProductID
+        WHERE O.Customer_ID = C.CustomerID
+    ) = (
+        SELECT COUNT(DISTINCT ProductCatagory)
+        FROM Product
+    );
+
 
 <ul>
   <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
@@ -204,13 +211,14 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q15. Calculate the total number of products sold by each seller </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/03492b45-b549-4e64-91bf-7542601a8369">
 
-    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
-    FROM Product AS P
-    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
-    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
-    GROUP BY P.ProductCatagory;
+    SELECT s.SellerID, s.SellerName, COUNT(oi.Product_ID) AS TotalProductsSold
+    FROM Seller s
+    LEFT JOIN Product p ON s.SellerID = p.Seller_ID
+    LEFT JOIN OrderItem oi ON p.ProductID = oi.Product_ID
+    GROUP BY s.SellerID, s.SellerName
+    ORDER BY s.SellerID;
 
 <ul>
   <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
@@ -219,13 +227,15 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q16. Retrieve the top 5 products with the highest sales in the last month </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/bf7dec82-9f6a-4f52-98b2-d20d78fb7671">
 
-    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    SELECT TOP 5 P.ProductID, P.ProductName, SUM(OI.Quantity) AS TotalSales
     FROM Product AS P
-    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
-    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
-    GROUP BY P.ProductCatagory;
+    JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
+    JOIN Orders AS O ON OI.Order_ID = O.OrderID
+    WHERE O.CreationTimeStamp >= DATEADD(MONTH, -1, GETDATE()) -- Filter orders from the last month
+    GROUP BY P.ProductID, P.ProductName
+    ORDER BY TotalSales DESC;
 
 <ul>
   <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
