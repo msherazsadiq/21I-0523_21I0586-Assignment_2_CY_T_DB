@@ -142,7 +142,7 @@ This ERD provides a clear overview of the relationships between various entities
 </ul>
 
 <h3>Q11. Retrieve the 3 most recent orders for a specific customer </h3>
-<img align = "right" width = "300" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/9a2f305f-ccfb-4c7b-8b24-3256447909e8">
+<img align = "right" width = "300" height = "130" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/9a2f305f-ccfb-4c7b-8b24-3256447909e8">
 
     SELECT TOP 3 O.OrderID, O.OrderNumber, O.CreationTimeStamp, O.TotalAmount
     FROM Orders AS O
@@ -211,7 +211,7 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q15. Calculate the total number of products sold by each seller </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/03492b45-b549-4e64-91bf-7542601a8369">
+<img align = "right" width = "250" height = "400" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/03492b45-b549-4e64-91bf-7542601a8369">
 
     SELECT s.SellerID, s.SellerName, COUNT(oi.Product_ID) AS TotalProductsSold
     FROM Seller s
@@ -227,7 +227,7 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q16. Retrieve the top 5 products with the highest sales in the last month </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/bf7dec82-9f6a-4f52-98b2-d20d78fb7671">
+<img align = "right" width = "250" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/bf7dec82-9f6a-4f52-98b2-d20d78fb7671">
 
     SELECT TOP 5 P.ProductID, P.ProductName, SUM(OI.Quantity) AS TotalSales
     FROM Product AS P
