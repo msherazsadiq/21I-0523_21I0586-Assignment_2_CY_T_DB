@@ -245,7 +245,6 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q17. Retrieve the latest 5 orders along with customer details and order items for each order. </h3>
-<img align = "right" width = "250" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/aa9049d5-5fe0-4c51-9bc8-9ff2eb2ea86e">
 
     SELECT TOP 5 O.OrderID, O.OrderNumber, O.CreationTimeStamp AS OrderCreationTime, C.CustomerID, C.CustomerName, C.ContactNo AS CustomerContactNo, 
 	   OI.Quantity AS OrderItemQuantity, P.ProductName AS OrderItemProductName, P.Price AS OrderItemProductPrice
@@ -255,6 +254,8 @@ This ERD provides a clear overview of the relationships between various entities
     JOIN Product AS P ON OI.Product_ID = P.ProductID
     ORDER BY O.CreationTimeStamp DESC;
 
+<img align = "center" width = "1000" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/aa9049d5-5fe0-4c51-9bc8-9ff2eb2ea86e">
+
 <ul>
   <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
   <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
@@ -262,7 +263,7 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q18. Retrieve customers who have made purchases in every product category, along with the total number of categories they have purchased from. </h3>
-<img align = "right" width = "250" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/b670c4b7-b5ff-4e8c-8c32-359f6806b597">
+<img align = "right" width = "400" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/b670c4b7-b5ff-4e8c-8c32-359f6806b597">
 
     SELECT C.CustomerID, C.CustomerName, COUNT(DISTINCT P.ProductCatagory) AS TotalCatagoriesPurchased
     FROM Customer AS C
@@ -279,7 +280,7 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q19. List products that have never been reviewed and have quantities in stock greater than zero, along with the average rating for their category.  </h3>
-<img align = "right" width = "250" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/707658fc-e74c-4077-aa41-2dc2d9369a4a">
+<img align = "right" width = "450" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/707658fc-e74c-4077-aa41-2dc2d9369a4a">
 
     SELECT P.ProductID, P.ProductName, P.ProductCatagory, I.QuantityInStock, AVG(R.Rating) AS AverageCategoryRating
     FROM Product AS P
@@ -295,7 +296,6 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q20.  Find the top 3 products with the highest total sales, including details of the reviews for each product. </h3>
-<img align = "right" width = "250" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/e2e7070c-5fc5-4191-b42b-c642434774d3">
 
     SELECT TOP 3 P.ProductID, P.ProductName, SUM(oi.Quantity) AS TotalSales, R.ReviewID, R.Rating, R.Comment
     FROM Product AS P
@@ -304,6 +304,8 @@ This ERD provides a clear overview of the relationships between various entities
     GROUP BY P.ProductID, P.ProductName, R.ReviewID, R.Rating, R.Comment
     ORDER BY TotalSales DESC;
 
+<img align = "center" width = "700" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/e2e7070c-5fc5-4191-b42b-c642434774d3">
+
 <ul>
   <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
   <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
@@ -311,7 +313,6 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q21. Retrieve all customers who have placed orders, and include details of their orders, even for orders with no associated customers. Include information about the shipping addresses for each order.  </h3>
-<img align = "right" width = "250" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/4a503f2e-2f9f-4bb8-8f61-94f380ea64f6">
 
     SELECT C.CustomerID, C.CustomerName, O.OrderID, O.OrderNumber, O.CreationTimeStamp AS OrderCreationTime, A.AddressLines AS ShippingAddress, A.AddressCity,
     A.AddressState, A.Country, A.ZipCode, OI.Quantity AS OrderItemQuantity, P.ProductName AS OrderItemProductName, P.Price AS OrderItemProductPrice
@@ -322,6 +323,7 @@ This ERD provides a clear overview of the relationships between various entities
     LEFT JOIN Product AS P ON OI.Product_ID = P.ProductID
     ORDER BY O.OrderID;
 
+<img align = "center" width = "1000" height = "500" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/4a503f2e-2f9f-4bb8-8f61-94f380ea64f6">
 
 <ul>
   <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
@@ -330,7 +332,7 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q22. Write an SQL query to retrieve the total number of products and the total revenue for each product category. Include products that may not have been sold. Additionally, order the product in descending order based on total revenue. </h3>
-<img align = "right" width = "250" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/953dfbd6-b4e3-47f2-9f5b-3e5b82de83cf">
+<img align = "right" width = "400" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/953dfbd6-b4e3-47f2-9f5b-3e5b82de83cf">
 
     SELECT P.ProductCatagory, COUNT(P.ProductID) AS TotalProducts, SUM(ISNULL(OI.Quantity, 0) + ISNULL(INV.QuantityInStock, 0) * P.Price) AS TotalRevenue
     FROM Product AS P
@@ -346,7 +348,6 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q23. Write a SQL query to retrieve detailed information about products and their associated orders. Include the product ID, product name, product category, order quantity, order price, and total revenue for each product. Ensure that products that have not been sold are also included in the result. Filter the results to include only products in the 'Electronics' category with order quantities between 5 and 10. Additionally, order results in descending order based on total revenue </h3>
-<img align = "right" width = "250" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/b227f8ad-4a35-4f56-b922-b8466bf042f3">
 
     SELECT
     p.ProductID,
@@ -361,6 +362,8 @@ This ERD provides a clear overview of the relationships between various entities
         AND oi.Quantity BETWEEN 5 AND 10
     ORDER BY TotalRevenue DESC;
 
+<img align = "center" width = "700" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/b227f8ad-4a35-4f56-b922-b8466bf042f3">
+
 <ul>
   <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
   <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
@@ -368,7 +371,7 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q24. Retrieve product categories with the total number of products sold, ordered in descending order by the total number of products sold, and show only categories with more than 10 products sold. </h3>
-<img align = "right" width = "250" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/c05f0cce-f047-411c-ac04-60c7f7ab62f6">
+<img align = "right" width = "250" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/c05f0cce-f047-411c-ac04-60c7f7ab62f6">
 
     SELECT
         p.ProductCatagory,
@@ -386,7 +389,7 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q25. Retrieve customers with the total number of orders they have placed, ordered in descending order by the total number of orders, and show only customers who have placed more than 5 orders.  </h3>
-<img align = "right" width = "250" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/025c32f2-e436-4355-980b-ad334b4f37b4">
+<img align = "right" width = "450" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/025c32f2-e436-4355-980b-ad334b4f37b4">
 
     SELECT
         c.CustomerID,
