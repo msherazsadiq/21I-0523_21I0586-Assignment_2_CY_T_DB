@@ -101,7 +101,7 @@ This ERD provides a clear overview of the relationships between various entities
 </ul>
 
 <h3>Q8. List customers who have not reviewed any products </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/81debd2b-55cd-468e-94ad-8106d886eab5">
+<img align = "right" width = "200" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/81debd2b-55cd-468e-94ad-8106d886eab5">
 
     SELECT C.CustomerID, C.CustomerName
     FROM Customer AS C
@@ -114,7 +114,7 @@ This ERD provides a clear overview of the relationships between various entities
 </ul>
 
 <h3>Q9.  Find products with quantities below the average quantity in stock </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/c081ef9c-c0ba-49c7-a617-5c29811e371d">
+<img align = "right" width = "200" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/c081ef9c-c0ba-49c7-a617-5c29811e371d">
 
     SELECT P.ProductID, P.ProductName, I.QuantityInStock
     FROM Product AS P
@@ -128,7 +128,7 @@ This ERD provides a clear overview of the relationships between various entities
 </ul>
 
 <h3>Q10. Calculate the total number of orders for each customer and show only those with more than 5 orders. </h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/2d293a23-696e-489d-b4b9-c9aefd053b49">
+<img align = "right" width = "300" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/2d293a23-696e-489d-b4b9-c9aefd053b49">
 
     SELECT C.CustomerID, C.CustomerName, COUNT(O.OrderID) AS TotalOrders
     FROM Customer AS C
