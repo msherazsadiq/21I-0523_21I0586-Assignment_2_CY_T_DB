@@ -257,8 +257,8 @@ This ERD provides a clear overview of the relationships between various entities
 <img align = "center" width = "1000" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/aa9049d5-5fe0-4c51-9bc8-9ff2eb2ea86e">
 
 <ul>
-  <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
-  <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
+  <li><b>Challenges</b><br> Combining data from multiple tables to provide detailed order information</li>
+  <li><b>Solution</b><br>  Recognize that JOIN combines data from multiple tables based on common fields, and aliases provide meaningful names for columns. This query aims to retrieve detailed information about the five most recent orders. It utilizes JOINs to combine the Orders, Customer, OrderItem, and Product tables, selecting relevant information from each table and using aliases to provide clear column names. The results are sorted in descending order based on order creation time to obtain the five most recent orders. </li>
 </ul>
 
 
@@ -274,8 +274,8 @@ This ERD provides a clear overview of the relationships between various entities
     HAVING COUNT(DISTINCT P.ProductCatagory) = (SELECT COUNT(DISTINCT ProductCatagory) FROM Product)
 
 <ul>
-  <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
-  <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
+  <li><b>Challenges</b><br> Identifying customers who have purchased products from all product categories</li>
+  <li><b>Solution</b><br>  Recognize that the subquery calculates the total number of product categories, and the HAVING clause filters the main query results based on customers who have purchased from all categories. This query aims to identify customers who have purchased products from every product category available. It utilizes a subquery to determine the total number of distinct product categories and then filters the main query results to only include customers whose purchase history covers all product categories. This query involves understanding subqueries, correlating subquery results with the main query, and filtering based on aggregate values. </li>
 </ul>
 
 
@@ -290,8 +290,8 @@ This ERD provides a clear overview of the relationships between various entities
     GROUP BY P.ProductID, P.ProductName, P.ProductCatagory, I.QuantityInStock;
 
 <ul>
-  <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
-  <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
+  <li><b>Challenges</b><br> Combining data from multiple tables and filtering based on multiple criteria</li>
+  <li><b>Solution</b><br>  Recognize that JOIN combines data from multiple tables based on common fields, and WHERE filters the results based on specified conditions. This query aims to identify products with no reviews and a positive quantity in stock, along with their average category rating. It utilizes LEFT JOIN to combine the Product, Review, and Inventory tables, ensuring all products are included. WHERE filters the results to only include products with no reviews and a positive quantity in stock. AVG() calculates the average category rating, and GROUP BY groups the results by product to provide individual average ratings for each product. </li>
 </ul>
 
 
@@ -307,8 +307,8 @@ This ERD provides a clear overview of the relationships between various entities
 <img align = "center" width = "700" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/e2e7070c-5fc5-4191-b42b-c642434774d3">
 
 <ul>
-  <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
-  <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
+  <li><b>Challenges</b><br> Combining data from multiple tables and retrieving top products with their reviews</li>
+  <li><b>Solution</b><br>  Recognize that JOIN combines data from multiple tables based on common fields, and TOP limits the results to the specified number. This query aims to identify the top 3 best-selling products along with their reviews. It utilizes JOINs to combine the Product, OrderItem, and Review tables, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 3 products. LEFT JOIN ensures that products with no reviews are still included. </li>
 </ul>
 
 
@@ -326,8 +326,8 @@ This ERD provides a clear overview of the relationships between various entities
 <img align = "center" width = "1000" height = "500" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/4a503f2e-2f9f-4bb8-8f61-94f380ea64f6">
 
 <ul>
-  <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
-  <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
+  <li><b>Challenges</b><br> Combining data from multiple tables to provide comprehensive order details</li>
+  <li><b>Solution</b><br>  Recognize that LEFT JOIN includes all rows from the left table (Orders) and matches corresponding rows from the other tables. Aliases provide meaningful names for columns. This query aims to retrieve comprehensive details about orders, including customer information, shipping address, order items, and product details. It utilizes LEFT JOINs to combine the Orders, Customer, Address, OrderItem, and Product tables, ensuring all orders are included even if some data is missing. Aliases are used to provide clear column names for the retrieved data. The results are sorted by order ID to maintain order sequence. </li>
 </ul>
 
 
@@ -342,8 +342,10 @@ This ERD provides a clear overview of the relationships between various entities
     ORDER BY TotalRevenue DESC;
 
 <ul>
-  <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
-  <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
+  <li><b>Challenges</b><br> Handling NULL values and combining data from multiple tables to calculate revenue</li>
+  <li><b>Solution</b><br>  Recognize that ISNULL() replaces NULL values with a specified value, and JOIN combines data from multiple tables based on common fields. This query aims to calculate total revenue for each product category, considering both sold and unsold products. It utilizes LEFT JOINs to combine the Product, OrderItem, and Inventory tables, ensuring all products are included. ISNULL() replaces NULL values with 0 to ensure accurate calculations for products with no sales or no inventory. SUM() aggregates the product quantity and price to calculate total revenue, and GROUP BY groups the results by product category to provide individual revenue figures for each category.
+
+ </li>
 </ul>
 
 
@@ -365,8 +367,8 @@ This ERD provides a clear overview of the relationships between various entities
 <img align = "center" width = "700" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/b227f8ad-4a35-4f56-b922-b8466bf042f3">
 
 <ul>
-  <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
-  <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
+  <li><b>Challenges</b><br> Handling NULL values and filtering based on multiple criteria</li>
+  <li><b>Solution</b><br>  Recognize that ISNULL() replaces NULL values with a specified value, and WHERE filters the results based on specified conditions. This query aims to identify electronic products with order quantities between 5 and 10 and calculate their total revenue. It utilizes a LEFT JOIN to combine the Product and OrderItem tables, ensuring all products are included. ISNULL() replaces NULL values with 0 to ensure accurate calculations for products with no sales. WHERE filters the results to only include electronic products with order quantities between 5 and 10. Total revenue is calculated by multiplying order quantity and price, and the results are sorted in descending order based on total revenue. </li>
 </ul>
 
 
@@ -383,8 +385,8 @@ This ERD provides a clear overview of the relationships between various entities
     ORDER BY TotalProductsSold DESC;
 
 <ul>
-  <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
-  <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
+  <li><b>Challenges</b><br> Aggregating product sales and filtering based on sales count</li>
+  <li><b>Solution</b><br>  Recognize that COUNT() aggregates product quantities, and HAVING filters the aggregated results based on specified conditions. This query aims to identify product categories with more than 10 products sold. It utilizes a LEFT JOIN to combine the Product and OrderItem tables, ensuring all product categories are included. COUNT() aggregates the product quantities, and HAVING filters the results to only include categories with more than 10 products sold. The results are sorted in descending order based on the total number of products sold. </li>
 </ul>
 
 
@@ -402,8 +404,8 @@ This ERD provides a clear overview of the relationships between various entities
     ORDER BY TotalOrdersPlaced DESC;
 
 <ul>
-  <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
-  <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
+  <li><b>Challenges</b><be> Aggregating customer orders and filtering based on order count</li>
+  <li><b>Solution</b><br>  Recognize that COUNT() aggregates order IDs and HAVING filters the aggregated results based on specified conditions. This query aims to identify customers who have placed more than 5 orders. It utilizes a LEFT JOIN to combine the Customer and Orders tables, ensuring all customers are included. COUNT() aggregates the order IDs and HAVING filters the results to only include customers with more than 5 orders placed. The results are sorted in descending order based on the total number of orders placed. </li>
 </ul>
 
 
