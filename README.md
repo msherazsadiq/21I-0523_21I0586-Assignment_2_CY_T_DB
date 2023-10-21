@@ -404,7 +404,7 @@ This ERD provides a clear overview of the relationships between various entities
     ORDER BY TotalOrdersPlaced DESC;
 
 <ul>
-  <li><b>Challenges</b><be> Aggregating customer orders and filtering based on order count</li>
+  <li><b>Challenges</b><br> Aggregating customer orders and filtering based on order count</li>
   <li><b>Solution</b><br>  Recognize that COUNT() aggregates order IDs and HAVING filters the aggregated results based on specified conditions. This query aims to identify customers who have placed more than 5 orders. It utilizes a LEFT JOIN to combine the Customer and Orders tables, ensuring all customers are included. COUNT() aggregates the order IDs and HAVING filters the results to only include customers with more than 5 orders placed. The results are sorted in descending order based on the total number of orders placed. </li>
 </ul>
 
