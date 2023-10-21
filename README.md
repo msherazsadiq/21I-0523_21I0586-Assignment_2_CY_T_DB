@@ -109,9 +109,10 @@ This ERD provides a clear overview of the relationships between various entities
     WHERE R.ReviewID IS NULL;
 
 <ul>
-  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
-  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+  <li><b>Challenges</b><br> Understanding the use of LEFT JOIN and filtering on NULL values</li>
+  <li><b>Solution</b><br>  Recognize that LEFT JOIN retains all rows from the left table (Customer) and matches corresponding rows from the right table (Review). Filtering on NULL values in the right table identifies customers who have no matching reviews. This query aims to identify customers who have not written any reviews. It utilizes a LEFT JOIN to combine the Customer and Review tables and then filters the results based on NULL values in the Review table. </li>
 </ul>
+
 
 <h3>Q9.  Find products with quantities below the average quantity in stock </h3>
 <img align = "right" width = "250" height = "300" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/c081ef9c-c0ba-49c7-a617-5c29811e371d">
@@ -123,8 +124,8 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <ul>
-  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
-  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+  <li><b>Challenges</b><br> Using a subquery to compare values against an aggregate value</li>
+  <li><b>Solution</b><br>  Recognize that the subquery calculates the average quantity in stock, and the WHERE clause filters the main query results based on that average. This query aims to identify products with a quantity in stock below the average quantity in stock. It utilizes a subquery to calculate the average quantity in stock and then filters the main query results based on that average. </li>
 </ul>
 
 <h3>Q10. Calculate the total number of orders for each customer and show only those with more than 5 orders. </h3>
@@ -137,8 +138,8 @@ This ERD provides a clear overview of the relationships between various entities
     HAVING COUNT(O.OrderID) >= 5;
 
 <ul>
-  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
-  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+  <li><b>Challenges</b><br> Combining data from multiple tables using JOIN and filtering based on aggregate values</li>
+  <li><b>Solution</b><br>  Recognize that JOIN combines data from multiple tables based on a common field, and HAVING filters the results based on aggregate values calculated using GROUP BY. This query aims to identify customers who have placed at least five orders. It utilizes a JOIN to combine the Customer and Orders tables, groups the results by customer, and filters the results using HAVING to only include customers with five or more orders. </li>
 </ul>
 
 <h3>Q11. Retrieve the 3 most recent orders for a specific customer </h3>
@@ -151,8 +152,8 @@ This ERD provides a clear overview of the relationships between various entities
     ORDER BY O.CreationTimeStamp DESC;
 
 <ul>
-  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
-  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+  <li><b>Challenges</b><br> Retrieving a specific number of records and sorting them based on a timestamp</li>
+  <li><b>Solution</b><br>  Recognize that TOP limits the number of records retrieved, and ORDER BY DESC sorts the results in descending order based on the specified column. This query aims to retrieve the three most recent orders for a specific customer. It utilizes an INNER JOIN to combine the Orders and Customer tables, filters the results based on the customer ID, and sorts the results in descending order based on the CreationTimeStamp column to obtain the most recent orders. </li>
 </ul>
 
 
@@ -168,8 +169,8 @@ This ERD provides a clear overview of the relationships between various entities
     HAVING COUNT(DISTINCT P.Seller_ID) >= 2;
 
 <ul>
-  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
-  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+  <li><b>Challenges</b><br> Identifying customers who have purchased from multiple sellers</li>
+  <li><b>Solution</b><br>   Recognize that COUNT(DISTINCT) counts the unique values of a column, and HAVING filters the results based on that count. This query aims to identify customers who have purchased products from at least two different sellers. It utilizes multiple JOINs to combine the Customer, Orders, OrderItem, and Product tables, groups the results by customer, and filters the results using HAVING to only include customers who have purchased from two or more distinct sellers based on the Seller_ID column. This query involves understanding multiple joins, aggregating data, and filtering based on distinct values. </li>
 </ul>
 
 
@@ -182,8 +183,8 @@ This ERD provides a clear overview of the relationships between various entities
     WHERE O.CreationTimeStamp >= DATEADD(DAY, -30, GETDATE());
 
 <ul>
-  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
-  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+  <li><b>Challenges</b><br> Identifying customers who have placed orders within the last 30 days</li>
+  <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, and WHERE filters the results based on the modified date. This query aims to identify customers who have placed orders within the last 30 days. It utilizes an INNER JOIN to combine the Customer and Orders tables and filters the results using WHERE to only include orders with a CreationTimeStamp within the last 30 days, calculated using DATEADD() and GETDATE(). This query involves understanding date manipulation, joining tables, and filtering based on date criteria. </li>
 </ul>
 
 
@@ -205,8 +206,8 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <ul>
-  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
-  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+  <li><b>Challenges</b><br> Identifying customers who have purchased products from all product categories</li>
+  <li><b>Solution</b><br>  Recognize that the nested subquery calculates the total number of product categories, and the WHERE clause filters the main query results based on customers who have purchased from all categories. This query aims to identify customers who have purchased products from every product category available. It utilizes a nested subquery to determine the total number of distinct product categories and then filters the main query results to only include customers whose purchase history covers all product categories. This query involves understanding nested subqueries, correlating subquery results with the main query, and filtering based on aggregate values. </li>
 </ul>
 
 
@@ -221,8 +222,8 @@ This ERD provides a clear overview of the relationships between various entities
     ORDER BY s.SellerID;
 
 <ul>
-  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
-  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+  <li><b>Challenges</b><br> Counting products sold by each seller, including those with no sales</li>
+  <li><b>Solution</b><br>  Recognize that LEFT JOIN includes all rows from the left table (Seller) and matches corresponding rows from the right tables (Product and OrderItem). COUNT() aggregates product IDs, and GROUP BY ensures counts are calculated for each seller. This query aims to count the total number of products sold by each seller, including sellers with no sales. It utilizes LEFT JOINs to combine the Seller, Product, and OrderItem tables, ensuring all sellers are included. COUNT() aggregates the product IDs, and GROUP BY groups the results by seller to provide individual product counts for each seller. </li>
 </ul>
 
 
@@ -238,8 +239,8 @@ This ERD provides a clear overview of the relationships between various entities
     ORDER BY TotalSales DESC;
 
 <ul>
-  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
-  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+  <li><b>Challenges</b><br> Identifying the top 5 best-selling products from the last month</li>
+  <li><b>Solution</b><br>  Recognize that DATEADD() modifies a date value, SUM() aggregates quantities, and TOP limits the results to the specified number. This query aims to identify the top 5 best-selling products based on sales from the last month. It utilizes JOINs to combine the Product, OrderItem, and Orders tables, filters the results using WHERE to only include orders from the last month, calculates total sales using SUM(), and sorts the results in descending order based on total sales to identify the top 5 products. </li>
 </ul>
 
 
