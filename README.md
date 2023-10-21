@@ -58,6 +58,36 @@ This ERD provides a clear overview of the relationships between various entities
   <li><b>Solution</b><br>  The GROUP BY clause is used to divide the rows into groups based on the specified column(s). In this query, SUM(TotalAmount) calculates the total spending for each customer, and GROUP BY Customer_ID groups the rows by customer ID. </li>
 </ul>
 
+<h3>Q5. Retrieve products with the highest average ratings </h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/6bead384-ae82-4e98-a3ac-69af292c6497">
+
+    SELECT Product_ID, AVG(Rating) AS AverageRating
+    FROM Review
+    GROUP BY Product_ID
+    HAVING AVG(Rating) = (SELECT MAX(AverageRating) 
+    FROM (SELECT Product_ID, AVG(Rating) AS AverageRating FROM Review GROUP BY Product_ID) AS AvgRatings);  
+
+<ul>
+  <li><b>Challenges</b><br>  Understanding nested subqueries and their purpose and Correlating the subquery with the main query</li>
+  <li><b>Solution</b><br>  In this case, the nested subquery is used to determine the maximum average rating among all products, which is then used to filter the main query results. The subquery's output is used as a filter for the main query. The HAVING clause in the main query compares the average rating of each product to the maximum average rating obtained from the subquery, ensuring that only products with the highest average rating are included in the final results. </li>
+</ul>
+
+<h3>Q6. Find customers who have made more than one purchase on the same day </h3>
+<img align = "right" width = "300" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/933a86e2-311d-4c70-9e89-c49baa28f07a">
+
+    SELECT C.CustomerID, C.CustomerName, COUNT(O.OrderID) AS PurchaseCount
+    FROM Customer AS C
+    JOIN Orders AS O ON C.CustomerID = O.Customer_ID
+    GROUP BY C.CustomerID, C.CustomerName, CAST(O.CreationTimeStamp AS DATE)
+    HAVING COUNT(O.OrderID) > 1  
+
+<ul>
+  <li><b>Challenges</b><br>  Understanding nested subqueries and their purpose and Correlating the subquery with the main query</li>
+  <li><b>Solution</b><br>  In this case, the nested subquery is used to determine the maximum average rating among all products, which is then used to filter the main query results. The subquery's output is used as a filter for the main query. The HAVING clause in the main query compares the average rating of each product to the maximum average rating obtained from the subquery, ensuring that only products with the highest average rating are included in the final results. </li>
+</ul>
+
+
+
  
 
 
