@@ -114,7 +114,7 @@ This ERD provides a clear overview of the relationships between various entities
 </ul>
 
 <h3>Q9.  Find products with quantities below the average quantity in stock </h3>
-<img align = "right" width = "200" height = "300" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/c081ef9c-c0ba-49c7-a617-5c29811e371d">
+<img align = "right" width = "250" height = "300" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/c081ef9c-c0ba-49c7-a617-5c29811e371d">
 
     SELECT P.ProductID, P.ProductName, I.QuantityInStock
     FROM Product AS P
@@ -174,7 +174,7 @@ This ERD provides a clear overview of the relationships between various entities
 
 
 <h3>Q13. Find customers who have placed an order in the last 30 days.</h3>
-<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/5341f334-cc66-4113-b0ed-c45feacf53ad">
+<img align = "right" width = "300" height = "200" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/5341f334-cc66-4113-b0ed-c45feacf53ad">
 
     SELECT DISTINCT C.CustomerID, C.CustomerName
     FROM Customer AS C
