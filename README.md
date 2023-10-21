@@ -86,6 +86,152 @@ This ERD provides a clear overview of the relationships between various entities
   <li><b>Solution</b><br>  Understanding how to join tables using a common field to combine data from multiple sources. In this query, the Customer and Orders tables are joined on the CustomerID and Customer_ID fields, respectively, to associate customer information with their orders. </li>
 </ul>
 
+<h3>Q7. Calculate the total revenue for each product category </h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+
+    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    FROM Product AS P
+    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
+    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
+    GROUP BY P.ProductCatagory;
+
+<ul>
+  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
+  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+</ul>
+
+<h3>Q8. List customers who have not reviewed any products </h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+
+    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    FROM Product AS P
+    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
+    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
+    GROUP BY P.ProductCatagory;
+
+<ul>
+  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
+  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+</ul>
+
+<h3>Q9.  Find products with quantities below the average quantity in stock </h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+
+    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    FROM Product AS P
+    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
+    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
+    GROUP BY P.ProductCatagory;
+
+<ul>
+  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
+  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+</ul>
+
+<h3>Q10. Calculate the total number of orders for each customer and show only those with more than
+5 orders. </h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+
+    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    FROM Product AS P
+    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
+    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
+    GROUP BY P.ProductCatagory;
+
+<ul>
+  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
+  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+</ul>
+
+<h3>Q11. Retrieve the 3 most recent orders for a specific customer </h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+
+    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    FROM Product AS P
+    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
+    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
+    GROUP BY P.ProductCatagory;
+
+<ul>
+  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
+  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+</ul>
+
+
+<h3>Q12. List customers who have purchased products from at least two different sellers. </h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+
+    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    FROM Product AS P
+    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
+    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
+    GROUP BY P.ProductCatagory;
+
+<ul>
+  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
+  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+</ul>
+
+
+<h3>Q13. Find customers who have placed an order in the last 30 days.</h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+
+    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    FROM Product AS P
+    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
+    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
+    GROUP BY P.ProductCatagory;
+
+<ul>
+  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
+  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+</ul>
+
+
+<h3>Q14. List customers who have made a purchase in every product category </h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+
+    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    FROM Product AS P
+    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
+    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
+    GROUP BY P.ProductCatagory;
+
+<ul>
+  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
+  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+</ul>
+
+
+<h3>Q15. Calculate the total number of products sold by each seller </h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+
+    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    FROM Product AS P
+    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
+    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
+    GROUP BY P.ProductCatagory;
+
+<ul>
+  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
+  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+</ul>
+
+
+<h3>Q16. Retrieve the top 5 products with the highest sales in the last month </h3>
+<img align = "right" width = "200" height = "100" src = "https://github.com/msherazsadiq/21I-0523_21I0586-Assignment_2_CY_T_DB/assets/148572780/40f0d27a-8a5b-46ff-bfe8-a796588fdac3">
+
+    SELECT P.ProductCatagory, SUM(OI.Quantity * P.Price) AS TotalRevenue
+    FROM Product AS P
+    INNER JOIN OrderItem AS OI ON P.ProductID = OI.Product_ID
+    INNER JOIN Orders AS O ON OI.Order_ID = O.OrderID
+    GROUP BY P.ProductCatagory;
+
+<ul>
+  <li><b>Challenges</b><br> Understanding multiple joins and their relationships and Aggregating data across multiple tables</li>
+  <li><b>Solution</b><br>  The concept of joining multiple tables using different join types. In this query, two inner joins are used to connect the Product, OrderItem, and Orders tables based on their respective IDs. To aggregate data from multiple tables using aggregate functions and GROUP BY. The query calculates total revenue by multiplying quantity and price from different tables and then groups the results by product category to provide a summarized overview. </li>
+</ul>
+
 
 
  
